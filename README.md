@@ -9,8 +9,7 @@ Mainly developed to be used as a node.js module.
 - provide configuration with config()
 - use the API
 
-`
-var limelight = require('./index.js')
+`var limelight = require('./index.js')
 
 var conf = {
 	limelight : {
