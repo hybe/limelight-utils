@@ -1,0 +1,29 @@
+{
+  "name": "limelight-utils",
+  "version": "1.0.0",
+  "description": "An easy-to-use Javascript API wrapper for accessing the Limelight Orchestrate Video REST API",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hybe/limelight-utils.git"
+  },
+  "keywords": [
+    "limelight",
+    "node",
+    "javascript",
+    "video"
+  ],
+  "author": "Sami Pippuri",
+  "license": "LGPL-2.1",
+  "bugs": {
+    "url": "https://github.com/hybe/limelight-utils/issues"
+  },
+  "homepage": "https://github.com/hybe/limelight-utils#readme",
+  "dependencies": {
+    "limelight": "0.0.2",
+    "needle": "^0.11.0"
+  }
+}
