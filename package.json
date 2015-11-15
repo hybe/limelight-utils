@@ -1,6 +1,6 @@
 {
   "name": "limelight-utils",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "An easy-to-use Javascript API wrapper for accessing the Limelight Orchestrate Video REST API",
   "main": "index.js",
   "scripts": {

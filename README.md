@@ -10,7 +10,6 @@ Mainly developed to be used as a node.js module.
 - use the API
 
 ```javascript
-var limelight = require('limelight-utils')
 
 var conf = {
 	limelight : {
@@ -19,9 +18,9 @@ var conf = {
 		secret: '<LIMELIGHT_SECRET_KEY>'
 	}
 }
+var limelight = require('limelight-utils').ContentAPI(conf)
 
-var client = limelight.ContentAPI(conf)
-client.listChannelGroups(function(err, res) {
+limelight.listChannelGroups(function(err, res) {
 	console.log('Channel Groups', res)
 })
 ```
@@ -68,6 +67,25 @@ listCues (mediaId, cb)
 ### update media cues for a given media
 - mediaId - media ID
 - cues - dictionary in the same format as specified in Limelight API. NOTE: JSON encoding is significant in the ad object
+
+The `cues` parameter should be a list of cue JSON objects like this:
+```javascript
+{
+  "placement":"BEFORE",
+  "startPositionInMilliseconds":-2147483648,
+  "endPositionInMilliseconds":-2147483648,
+  "name":"Pre-Roll (via web)",
+  "index":0,
+  "details": JSON.stringify({
+    "adType":"VAST",
+    "isOverlay":false,
+    "trackingPixelUrls":$scope.form.trackURL,
+    "adDetails": {
+      "url":"<adurl>"
+  	}
+  })          
+}
+```
 
 updateCues (mediaId, cues, cb) 
 
