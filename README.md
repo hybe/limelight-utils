@@ -6,11 +6,11 @@ Mainly developed to be used as a node.js module.
 
 - `npm install limelight-utils`
 - `require limelight-utils`
-- provide configuration with config()
+- provide configuration with config() or ContentAPI
 - use the API
 
 ```javascript
-var limelight = require('./index.js')
+var limelight = require('limelight-utils')
 
 var conf = {
 	limelight : {
@@ -20,8 +20,8 @@ var conf = {
 	}
 }
 
-limelight.config(conf)
-limelight.listChannelGroups(function(err, res) {
+var client = limelight.ContentAPI(conf)
+client.listChannelGroups(function(err, res) {
 	console.log('Channel Groups', res)
 })
 ```
