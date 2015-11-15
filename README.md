@@ -10,7 +10,6 @@ Mainly developed to be used as a node.js module.
 - use the API
 
 ```javascript
-
 var conf = {
 	limelight : {
 		organization: '<ORGANIZATION_ID>',
@@ -29,10 +28,11 @@ limelight.listChannelGroups(function(err, res) {
 The API is a thin wrapper around the Limelight Orchestra Content API. At the current version 
 it's not doing a whole lot of error checking etc on the parameters (pull requests welcome!) 
 so if you get an empty response, that might be the reason. Typically, the Limelight REST API doesn't 
-provide very useful error messages in malformed request parameter cases.
+provide very useful error messages in malformed request parameter cases, so if you get empty responses, that
+is most likely the reason.
 
 In most methods the parameters are self explanatory, URL parameters and strutures are typically 
-passed through as-is. Refer to Limelight documentation for those: http://support.video.limelight.com/support/docs/content_api/
+passed through as-is. Refer to [Limelight documentation](http://support.video.limelight.com/support/docs/content_api/)
 
 ### list all channel groups
 listChannelGroups (cb)
@@ -55,7 +55,7 @@ listAllChannels (cb)
 ### list available encodings for a media 
 listMediaEncodings (mediaId, cb)
 
-### search with parameters as Limelight search API defines
+### search with parameters as the Limelight search API defines
 searchMedia (params, cb)
 
 ### list media properties
@@ -68,7 +68,9 @@ listCues (mediaId, cb)
 - mediaId - media ID
 - cues - dictionary in the same format as specified in Limelight API. NOTE: JSON encoding is significant in the ad object
 
-The `cues` parameter should be a list of cue JSON objects like this:
+updateCues (mediaId, cues, cb) 
+
+The `cues` parameter should be an *array* of Limelight cue JSON objects such as this:
 ```javascript
 {
   "placement":"BEFORE",
@@ -79,15 +81,13 @@ The `cues` parameter should be a list of cue JSON objects like this:
   "details": JSON.stringify({
     "adType":"VAST",
     "isOverlay":false,
-    "trackingPixelUrls":$scope.form.trackURL,
+    "trackingPixelUrls": "<trackingPixelUrl>",
     "adDetails": {
       "url":"<adurl>"
   	}
   })          
 }
 ```
-
-updateCues (mediaId, cues, cb) 
 
 ### add a media into a channel
 putMediaToChannel (mediaId, channelId, cb)
