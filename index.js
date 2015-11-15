@@ -18,21 +18,18 @@ var limelight = require('limelight');
 var config = {
 	limelight : {}
 }
-
-try {
- config = require('environment');
-} catch(ex) {
-	// ignore - not found
-}
- 
 // Setup the auth variables.
-var organization = config.limelight.organization || '<ORGANIZATION_ID>';
-var access_key = config.limelight.accessKey || '<LIMELIGHT_ACCESS_KEY>';
-var secret = config.limelight.secret || '<LIMELIGHT_SECRET_KEY>';
-
+var organization = null;
+var access_key = null;
+var secret = null;
+ 
 // set configuration at runtime
 module.exports.config = function(conf) {
 	config = conf;
+	// Setup the auth variables.
+	organization = config.limelight.organization || '<ORGANIZATION_ID>';
+	access_key = config.limelight.accessKey || '<LIMELIGHT_ACCESS_KEY>';
+	secret = config.limelight.secret || '<LIMELIGHT_SECRET_KEY>';
 }
 
 // list all channel groups
@@ -156,6 +153,11 @@ module.exports.uploadMedia = function(props, cb) {
 	var url =  'http://api.video.limelight.com/rest/organizations/' + organization + 
 				'/media.json';
 	return _execute(url, cb, props, "POST");
+}
+
+module.exports.ContentAPI = function(conf) {
+	module.exports.config(conf);
+	return module.exports;
 }
 
 // make the rquest to limelight API
