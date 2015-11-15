@@ -9,7 +9,8 @@ Mainly developed to be used as a node.js module.
 - provide configuration with config()
 - use the API
 
-`var limelight = require('./index.js')
+```javascript
+var limelight = require('./index.js')
 
 var conf = {
 	limelight : {
@@ -23,7 +24,7 @@ limelight.config(conf)
 limelight.listChannelGroups(function(err, res) {
 	console.log('Channel Groups', res)
 })
-`
+```
 
 # API
 The API is a thin wrapper around the Limelight Orchestra Content API. At the current version 
