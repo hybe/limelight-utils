@@ -6,9 +6,34 @@ Mainly developed to be used as a node.js module.
 
 - `npm install limelight-utils`
 - `require limelight-utils`
+- provide configuration with config()
 - use the API
 
+`
+var limelight = require('./index.js')
+
+var conf = {
+	limelight : {
+		organization: '<ORGANIZATION_ID>',
+		accessKey: '<LIMELIGHT_ACCESS_KEY>',
+		secret: '<LIMELIGHT_SECRET_KEY>'
+	}
+}
+
+limelight.config(conf)
+limelight.listChannelGroups(function(err, res) {
+	console.log('Channel Groups', res)
+})
+`
+
 # API
+The API is a thin wrapper around the Limelight Orchestra Content API. At the current version 
+it's not doing a whole lot of error checking etc on the parameters (pull requests welcome!) 
+so if you get an empty response, that might be the reason. Typically, the Limelight REST API doesn't 
+provide very useful error messages in malformed request parameter cases.
+
+In most methods the parameters are self explanatory, URL parameters and strutures are typically 
+passed through as-is. Refer to Limelight documentation for those: http://support.video.limelight.com/support/docs/content_api/
 
 ### list all channel groups
 listChannelGroups (cb)
@@ -43,6 +68,7 @@ listCues (mediaId, cb)
 ### update media cues for a given media
 - mediaId - media ID
 - cues - dictionary in the same format as specified in Limelight API. NOTE: JSON encoding is significant in the ad object
+
 updateCues (mediaId, cues, cb) 
 
 ### add a media into a channel
